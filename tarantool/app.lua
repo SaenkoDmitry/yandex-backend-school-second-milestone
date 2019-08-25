@@ -1,4 +1,17 @@
-json = require('json')
+#!/usr/bin/env tarantool
+
+local log = require('log')
+local console = require('console')
+
+box.cfg {
+  listen = 3301;
+}
+
+if not box.space.citizens then
+	box.schema.space.create('citizens', {format={ {name = 'id', type = 'string'}, {name = 'citizen_id', type = 'number'}, {name = 'town', type = 'string'}, {name = 'street', type = 'string'}, {name = 'building', type = 'string'}, {name = 'apartment', type = 'number'}, {name = 'name', type = 'string'}, {name = 'birth_date', type = 'string'}, {name = 'gender', type = 'string'}, {name = 'relatives', type = 'array'} }})
+	box.space.citizens:create_index('primary', {type='tree', parts={1, 'string', 2, 'number'}})
+end
+
 
 function by_months(import_id)
   local v, t

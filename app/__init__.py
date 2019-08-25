@@ -1,5 +1,10 @@
-from aiohttp import web
+import os
+import sys
 
+sys.path.append(os.path.dirname(__file__))
+
+
+from aiohttp import web
 from app.routes.routes import routes
 
 
@@ -9,4 +14,4 @@ async def make_app():
     return app
 
 
-web.run_app(make_app(), port=5050)
+web.run_app(make_app(), port=8080)

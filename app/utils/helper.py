@@ -1,4 +1,3 @@
-from app.db.tarantool import citizens_conn
 from app.service import service
 
 

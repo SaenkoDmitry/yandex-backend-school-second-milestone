@@ -1,0 +1,34 @@
+version: '3'
+services:
+  web:
+    build:
+      context: app/
+    container_name: web
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    networks:
+      mynet:
+        aliases:
+          - web
+    depends_on:
+      - tarantool
+    tty: true
+
+  tarantool:
+    build:
+      context: tarantool/
+    container_name: tarantool
+    networks:
+      mynet:
+        aliases:
+          - tarantool
+    ports:
+      - "3301:3301"
+    tty: true
+
+networks:
+  mynet:
+    external:
+      name: mynet

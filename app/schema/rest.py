@@ -59,15 +59,3 @@ citizen_patch_request_schema = {
     ]
 }
 
-import_id_returned = {
-    'type': 'object',
-    'properties': {
-        'data': {
-            'type': 'object',
-            'properties': {
-                'import_id': {'type': 'number '}
-            }
-        }
-    },
-    'required': ['import_id']
-}
