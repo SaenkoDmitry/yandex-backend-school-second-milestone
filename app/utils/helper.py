@@ -6,17 +6,10 @@ def update_relatives(import_id, citizen_dict, update_for_citizen):
     a = set(citizen_dict['relatives'])
     b = set(update_for_citizen['relatives'])
     for relative_id in a.difference(b):
-        print('import_id', import_id, 'relative_id', relative_id, 'citizen_dict[citizen_id]', citizen_dict['citizen_id'])
         service.delete_by_relative_id(import_id, relative_id, citizen_dict['citizen_id'])
-        # todo : make delete for every i
 
     for relative_id in b.difference(a):
-        print('import_id', import_id, 'relative_id', relative_id, 'citizen_dict[citizen_id]', citizen_dict['citizen_id'])
         service.add_by_relative_id(import_id, relative_id, citizen_dict['citizen_id'])
-        # todo : make add for every i
-
-
-    # todo : need to think out mechanism for convert to dict from tuple and other
 
 
 def actualize_dict(new_dict, old_dict):
