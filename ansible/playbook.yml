@@ -1,0 +1,46 @@
+- name: Send project to remote host
+  hosts: api
+  vars:
+    projectDir: /Users/ruasedi/projects/python/ya-gift-store # app dir
+
+  tasks:
+  - name: rm gifts folder
+    file:
+      path: "/home/entrant/gifts"
+      state: absent
+
+  - name: mkdir dest_path
+    file:
+      path: "/home/entrant/gifts"
+      state: directory
+      mode: 0755
+
+  - name: mkdir dest_path app
+    file:
+      path: "/home/entrant/gifts/app"
+      state: directory
+      mode: 0755
+
+  - name: mkdir dest_path tarantool
+    file:
+      path: "/home/entrant/gifts/tarantool"
+      state: directory
+      mode: 0755
+
+  - name: cd ../
+    command: bash -lc "cd .."
+
+  - name: Copy app
+    copy:
+      src: "{{ projectDir }}/app/"
+      dest: "/home/entrant/gifts/app"
+
+  - name: Copy tarantool
+    copy:
+      src: "{{ projectDir }}/tarantool/"
+      dest: "/home/entrant/gifts/tarantool"
+
+  - name: Copy docker-compose.yml
+    copy:
+      src: "{{ projectDir }}/docker-compose.yml"
+      dest: "/home/entrant/gifts/docker-compose.yml"

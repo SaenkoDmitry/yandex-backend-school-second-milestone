@@ -1,0 +1,4 @@
+ansible_connection: ssh
+ansible_user: entrant
+ansible_ssh_pass: b772cfddebcacc5ce6a22d1b08ecf7d541bbc5a29dde1bd47991e5c222cbb4df
+ansible_become_pass: b772cfddebcacc5ce6a22d1b08ecf7d541bbc5a29dde1bd47991e5c222cbb4df
