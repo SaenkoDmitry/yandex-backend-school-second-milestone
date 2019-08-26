@@ -8,6 +8,10 @@ format_checker = FormatChecker()
 @format_checker.checks('simple_date')
 def simple_date(date_text):
     try:
-        return datetime.datetime.strptime(date_text, '%d.%m.%Y')
+        from_json_date = datetime.datetime.strptime(date_text, '%d.%m.%Y')
+        now = datetime.datetime.now()
+        if from_json_date > now:
+            raise ValueError
+        return from_json_date
     except ValueError:
-        raise ValidationError("Incorrect data format, should be DD-MM-YYYY")
+        raise ValidationError("Incorrect date, should be DD-MM-YYYY and go before current date")
