@@ -11,6 +11,8 @@
 
 ### Структура приложения
 
+```
+
 |
 |__ app
     |__ db
@@ -33,6 +35,8 @@
     |__app.lua - конфигурационный файл для задания настроек tarantool и определения хранимых процедур
     |__Dockerfile - docker-файл для создания образа с нужными настройками
     
+```
+    
 docker-compose.yml - описания сервисов для создания образов и запуска контейнеров посредством утилиты docker-compose 
 
 ### CI/CD
@@ -45,7 +49,7 @@ docker-compose.yml - описания сервисов для создания �
 * docker tag project_name_prefix_service docker_hub_repo:service_name // service_name = web, tarantool
 * (on server) docker login
 * (on server) docker pull docker_hub_repo:service_name // service_name = web, tarantool
-* (on server) sudo docker run -d -p3301:3301--name tarantool --network='mynet' docker_hub_repo:service_name // service_name = web, tarantool
+* (on server) sudo docker run -d --restart unless-stopped -p port:port --name tarantool --network='mynet' docker_hub_repo:service_name // service_name = web, tarantool
 
 
 ### Задачи
