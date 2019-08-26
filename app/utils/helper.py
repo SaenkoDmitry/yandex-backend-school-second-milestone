@@ -22,3 +22,9 @@ def convert_dict_to_tuple(old_dict, schema):
 
 def convert_tuple_to_dict(old_tuple, schema):
     return dict(zip(schema, old_tuple))
+
+
+def resp_wrapper(data):
+    return {
+        "data": data
+    }
