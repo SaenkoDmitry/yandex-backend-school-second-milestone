@@ -52,12 +52,22 @@ docker-compose.yml - описания сервисов для создания �
 Для деплоя приложения используется docker и docker hub.
 
 #### Текущий Workflow
-* $ docker-compose build - создает два образа: project_name_prefix_tarantool и project_name_prefix_web
-* ~~$ docker-compose up -d - запускает контейнеры на основе созданных образов~~
-* docker tag project_name_prefix_service docker_hub_repo:service_name // service_name = web, tarantool
-* (on server) docker login
-* (on server) docker pull docker_hub_repo:service_name // service_name = web, tarantool
-* (on server) sudo docker run -d --restart unless-stopped -p port:port --name tarantool --network='mynet' docker_hub_repo:service_name // service_name = web, tarantool
+1. перейти в директорию ansible проекта и подставить в файл playbook.yml значение переменной с указанием пути к проекту
+2. выполнить ansible-playbook скрипт для отправки исходников на сервер, запустив команду:
+```
+ansible-playbook -i environments playbook.yml
+```
+
+3. $ (на удаленной машине) перейти в папку /home/entrant/gifts и выполнить команду:
+```
+sudo docker-compose build - создает два образа: gifts_tarantool и gifts_web
+```
+
+4. (на удаленной машине) выполнить команды для запуска сервисов в представленной ниже очередности:
+```
+sudo docker run -d --restart unless-stopped -p 3301:3301 --name tarantool --network='mynet' gifts_tarantool
+sudo docker run -d --restart unless-stopped -p 8080:8080 --name web --network='mynet' gifts_web
+```
 
 
 ### Задачи
