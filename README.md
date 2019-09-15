@@ -68,15 +68,3 @@ sudo docker-compose build - создает два образа: gifts_tarantool 
 sudo docker run -d --restart unless-stopped -p 3301:3301 --name tarantool --network='mynet' gifts_tarantool
 sudo docker run -d --restart unless-stopped -p 8080:8080 --name web --network='mynet' gifts_web
 ```
-
-
-### Задачи
-- [x] подключить docker
-- [x] настроить Dockerfile app
-- [x] настроить Dockerfile tarantool
-- [ ] донастроить docker-compose
-- [ ] добавить тесты
-
-### Нерешенные проблемы
-- [ ] docker-compose при создании контейнеров создает их с неверным алиасом для network, вследствии чего обращение от сервера к базе по алиасу tarantool невозможно и сервер не стартует
-(временное решение: использовать docker-compose только для создания образов, запускать контейнеры вручную)
