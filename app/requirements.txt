@@ -1,6 +1,6 @@
 aiohttp==3.5.4
 aiohttp-validate==1.1.0
 jsonschema==3.0.2
-numpy==1.17.0
+numpy==1.22.0
 python-dateutil==2.8.0
 tarantool==0.6.6
